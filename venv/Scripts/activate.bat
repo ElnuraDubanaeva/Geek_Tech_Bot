@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\Users\ysmaiyl\pythonProjects\telegram_bot\venv"
+set "VIRTUAL_ENV=C:\Users\ysmaiyl\PycharmProjects\telegram_bot\venv"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

@@ -2,7 +2,9 @@ from aiogram import Bot, Dispatcher, types
 from decouple import config
 from aiogram.utils import executor
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+import logging
 
+logging.basicConfig(level=logging.INFO)
 TOKEN = config("TOKEN")
 bot = Bot(TOKEN)
 dp = Dispatcher(bot=bot)
@@ -73,7 +75,7 @@ async def mem_handler(message: types.Message):
 
 @dp.message_handler()
 async def echo(message: types.Message):
-    if message.text.isdigit():
+    if message.text.isnumeric():
         await bot.send_message(message.from_user.id, int(message.text) ** 2)
     else:
         await bot.send_message(message.from_user.id, message.text)

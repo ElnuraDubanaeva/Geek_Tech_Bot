@@ -1,8 +1,7 @@
 venv
 .env
-
 .idea
 .vscodeg
-__pycache__/
+__pycache__
 *.py[cod]
 *.so

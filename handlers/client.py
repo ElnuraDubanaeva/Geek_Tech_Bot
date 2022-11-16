@@ -1,7 +1,7 @@
 from aiogram import types, Dispatcher
 from config import bot
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
+from keyboards.client_kb import start_markup
 
 # @dp.message_handler(commands=['quiz'])
 async def quiz_1(message: types.Message):
@@ -31,7 +31,8 @@ async def quiz_1(message: types.Message):
 
 # @dp.message_handler(commands=["start"])
 async def start_handler(message: types.Message):
-    await bot.send_message(message.chat.id, f'Hello {message.from_user.first_name}')
+    await bot.send_message(message.chat.id, f'Hello {message.from_user.first_name}',
+                           reply_markup = start_markup)
 
 
 # @dp.message_handler(commands=["mem"])
@@ -68,6 +69,6 @@ async def pin_message(message: types.Message):
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(mem_handler, commands=['mem'])
-    dp.register_message_handler(start_handler, commands=['start'])
+    dp.register_message_handler(start_handler, commands=['start','help'])
     dp.register_message_handler(pin_message, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(dice_start, commands=['dice'])

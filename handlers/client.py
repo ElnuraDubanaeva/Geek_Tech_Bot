@@ -2,8 +2,10 @@ from aiogram import types, Dispatcher
 from config import bot
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from keyboards.client_kb import start_markup
-
+from database.bot_db import random_sql
 # @dp.message_handler(commands=['quiz'])
+
+
 async def quiz_1(message: types.Message):
     markup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton("NEXT", callback_data="button_call_1")
@@ -66,9 +68,14 @@ async def pin_message(message: types.Message):
         await message.answer(f'Your message {message.text} is not replied to message ')
 
 
+async def get_random_mentor(message: types.Message):
+    await random_sql(message)
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(mem_handler, commands=['mem'])
-    dp.register_message_handler(start_handler, commands=['start','help'])
+    dp.register_message_handler(start_handler, commands=['start', 'help'])
     dp.register_message_handler(pin_message, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(dice_start, commands=['dice'])
+    dp.register_message_handler(get_random_mentor,commands=['get'])

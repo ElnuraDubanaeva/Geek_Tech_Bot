@@ -4,6 +4,8 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 # Вопрос можно ли делать так чтобы викторину отправлял в чат айди а не в юзер айди?
 # @dp.callback_query_handler(text="button_call_2")
+
+
 async def quiz_2(call: types.CallbackQuery):
     markup = InlineKeyboardMarkup()
     button_call_2 = InlineKeyboardButton("NEXT", callback_data='button_call_2')

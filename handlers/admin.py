@@ -1,7 +1,7 @@
 from aiogram import types, Dispatcher
 from config import admin, bot
 from random import choice
-from database.bot_db import delete_sql, all_sql, get_all_usernames
+from database.bot_db import delete_sql, all_sql
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 

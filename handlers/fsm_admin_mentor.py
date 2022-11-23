@@ -94,7 +94,7 @@ async def submit(message: types.Message, state: FSMContext):
         await message.answer("Регистрация успешно завершена")
     elif message.text == "НЕТ":
         await state.finish()
-        await bot.send_message(message.from_user.id, "Отмено")
+        await bot.send_message(message.from_user.id, "Отмена")
     else:
         await message.answer("Да или Нет!?")
 

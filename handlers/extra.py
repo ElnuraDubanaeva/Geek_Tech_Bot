@@ -1,5 +1,6 @@
 from config import bot
 from aiogram import types, Dispatcher
+from parser.video import parser_music
 
 
 # @dp.message_handler()

@@ -16,8 +16,8 @@ callback.register_callback_handlers(dp)
 fsm_admin_mentor.register_handlers_fsm_mentor(dp)
 schedule.register_handlers_schedule(dp)
 
-admin.register_admin_handler(dp)
 extra.register_extra_handler(dp)
+admin.register_admin_handler(dp)
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

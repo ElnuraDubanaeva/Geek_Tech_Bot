@@ -3,6 +3,9 @@ from config import bot
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from keyboards.client_kb import start_markup
 from database.bot_db import random_sql
+from parser.video import parser_music
+
+
 # @dp.message_handler(commands=['quiz'])
 
 
@@ -34,7 +37,7 @@ async def quiz_1(message: types.Message):
 # @dp.message_handler(commands=["start"])
 async def start_handler(message: types.Message):
     await bot.send_message(message.chat.id, f'Hello {message.from_user.first_name}',
-                           reply_markup = start_markup)
+                           reply_markup=start_markup)
 
 
 # @dp.message_handler(commands=["mem"])
@@ -72,10 +75,21 @@ async def get_random_mentor(message: types.Message):
     await random_sql(message)
 
 
+async def parser(message: types.Message):
+    items = parser_music()
+    for item in items:
+        song = open(f'parser/{item["name"]}.mp3', 'rb')
+        if song:
+            await bot.send_audio(message.from_user.id, song)
+        else:
+            continue
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(mem_handler, commands=['mem'])
     dp.register_message_handler(start_handler, commands=['start', 'help'])
     dp.register_message_handler(pin_message, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(dice_start, commands=['dice'])
-    dp.register_message_handler(get_random_mentor,commands=['get'])
+    dp.register_message_handler(get_random_mentor, commands=['get'])
+    dp.register_message_handler(parser, commands=['billie'])

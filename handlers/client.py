@@ -3,7 +3,7 @@ from config import bot
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from keyboards.client_kb import start_markup
 from database.bot_db import random_sql
-from parser.video import parser_music
+from parser.lyric import parser_music
 
 
 # @dp.message_handler(commands=['quiz'])
@@ -78,7 +78,7 @@ async def get_random_mentor(message: types.Message):
 async def parser(message: types.Message):
     items = parser_music()
     for item in items:
-        song = open(f'parser/{item["name"]}.mp3', 'rb')
+        song = open(f'{item["name"]}.mp3', 'rb')
         if song:
             await bot.send_audio(message.from_user.id, song)
         else:

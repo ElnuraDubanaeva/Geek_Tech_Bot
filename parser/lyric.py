@@ -23,12 +23,12 @@ def get_data(html):
         lyric = {
             'name': song.string
         }
-        # song_download_link = item.get("data-track")
-        #     if song_download_link:
-        #         wget.download(song_download_link, out=f'{lyric["name"]}.mp3')
-        #         print(f'{lyric["name"]} downloaded successfully')
-        #     else:
-        #         continue
+        song_download_link = item.get("data-track")
+        if song_download_link:
+            wget.download(song_download_link, out=f'{lyric["name"]}.mp3')
+            print(f'{lyric["name"]} downloaded successfully')
+        else:
+            continue
         lyrics.append(lyric)
     return lyrics
 

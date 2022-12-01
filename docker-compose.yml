@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   bot:
-    container_name: elnura_bot
+    container_name: MyFirstBot
     restart: always
     build:
       context: .

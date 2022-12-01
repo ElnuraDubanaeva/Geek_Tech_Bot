@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   bot:
-    container_name: My_Bot
+    container_name: My_bot
     restart: always
     build:
       context: .

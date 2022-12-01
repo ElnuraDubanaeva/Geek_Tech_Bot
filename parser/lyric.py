@@ -14,6 +14,19 @@ def get_html(url, params=''):
     return req
 
 
+def get_name(html):
+    soup = BS(html, 'html.parser')
+    items = soup.find_all('div', class_='track d-flex ai-center grid-item js-item')
+    lyrics = []
+    for item in items:
+        song = item.find('div', class_='track__desc flex-grow-1').find('a')
+        lyric = {
+            'name': song.string
+        }
+        lyrics.append(lyric)
+    return lyrics
+
+
 def get_data(html):
     soup = BS(html, 'html.parser')
     items = soup.find_all('div', class_='track d-flex ai-center grid-item js-item')
@@ -25,7 +38,7 @@ def get_data(html):
         }
         song_download_link = item.get("data-track")
         if song_download_link:
-            wget.download(song_download_link, out=f'{lyric["name"]}.mp3')
+            wget.download(song_download_link, out=f'{"media/"}/{lyric["name"]}.mp3')
             print(f'{lyric["name"]} downloaded successfully')
         else:
             continue
@@ -33,10 +46,18 @@ def get_data(html):
     return lyrics
 
 
+def parser_name():
+    html = get_html(URL)
+    if html.status_code == 200:
+        list_name = get_name(html.text)
+        return list_name
+
+
 def parser_music():
     html = get_html(URL)
     if html.status_code == 200:
         musics = get_data(html.text)
         return musics
+
     else:
         raise Exception("Error in parser!")

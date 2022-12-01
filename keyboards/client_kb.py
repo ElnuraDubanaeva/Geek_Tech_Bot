@@ -4,7 +4,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 start_markup = ReplyKeyboardMarkup(
     resize_keyboard=True,
     one_time_keyboard=True,
-    row_width=2,
+    row_width=3,
 
 ).add(
     KeyboardButton('/quiz'),
@@ -14,7 +14,8 @@ start_markup = ReplyKeyboardMarkup(
     KeyboardButton('/reg'),
     KeyboardButton('/get'),
     KeyboardButton('/del'),
-    # KeyboardButton('/R')
+    KeyboardButton('/allMusic'),
+    KeyboardButton('/music')
 )
 
 submit_markup = ReplyKeyboardMarkup(

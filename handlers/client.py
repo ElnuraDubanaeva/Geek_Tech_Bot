@@ -3,7 +3,7 @@ from config import bot
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from keyboards.client_kb import start_markup
 from database.bot_db import random_sql
-from parser.lyric import parser_music
+from parser.lyric import parser_name
 
 
 # @dp.message_handler(commands=['quiz'])
@@ -42,7 +42,7 @@ async def start_handler(message: types.Message):
 
 # @dp.message_handler(commands=["mem"])
 async def mem_handler(message: types.Message):
-    photo = open("media/img.png", 'rb')
+    photo = open("parser/img.png", 'rb')
     await bot.send_photo(message.chat.id, photo=photo)
 
 
@@ -76,13 +76,28 @@ async def get_random_mentor(message: types.Message):
 
 
 async def parser(message: types.Message):
-    items = parser_music()
+    items = parser_name()
     for item in items:
-        song = open(f'{item["name"]}.mp3', 'rb')
+        song = open(f'{"media/"}{item["name"]}.mp3', 'rb')
         if song:
             await bot.send_audio(message.from_user.id, song)
         else:
             continue
+
+
+async def info_download(message: types.Message):
+    items = parser_name()
+    all1 = []
+    i = 1
+    for item in items:
+        song = f'{i})' + item["name"]
+        all1.append(song)
+        i += 1
+    mus = '\n'.join(all1)
+    await message.answer(f"<b>Billie Eilish`s songs</b>\n{mus}"
+                         f"\nIf you want to download song send me\n<b><i>Billie Eilish song`s name \n(as it is in the list above)</i></b>"
+                         f"\nfor example: Billie Eilish Lovely ",
+                         parse_mode='html')
 
 
 def register_handlers_client(dp: Dispatcher):
@@ -92,4 +107,5 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(pin_message, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(dice_start, commands=['dice'])
     dp.register_message_handler(get_random_mentor, commands=['get'])
-    dp.register_message_handler(parser, commands=['billie'])
+    dp.register_message_handler(parser, commands=['allMusic'])
+    dp.register_message_handler(info_download, commands=['music'])

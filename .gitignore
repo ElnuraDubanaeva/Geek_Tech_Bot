@@ -8,3 +8,4 @@ diff.py
 #git rm -rf --cached .
 media/
 .env
+.gitignore

@@ -10,7 +10,10 @@ async def echo(message: types.Message):
         for item in items:
             if message.text.replace('Billie Eilish ','') == item["name"]:
                 song = open(f'media/{item["name"]}.mp3','rb')
-                await bot.send_audio(message.from_user.id,song)
+                if song:
+                    await bot.send_audio(message.from_user.id,song)
+                else:
+                    continue
     elif message.text.isnumeric():
         await bot.send_message(message.from_user.id, int(message.text) ** 2)
     else:

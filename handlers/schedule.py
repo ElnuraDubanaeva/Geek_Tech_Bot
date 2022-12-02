@@ -28,9 +28,6 @@ async def scheduler():
         await asyncio.sleep(2)
 
 
-
-
-
 async def download_music():
     items = await parser_music()
     while True:

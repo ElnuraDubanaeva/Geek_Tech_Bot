@@ -53,6 +53,7 @@ def parser_name():
     if html.status_code == 200:
         list_name = get_name(html.text)
         return list_name
+    print(html)
     return ['nothing']
 
 

@@ -1,5 +1,4 @@
 import sqlite3
-from config import bot
 from random import choice
 
 

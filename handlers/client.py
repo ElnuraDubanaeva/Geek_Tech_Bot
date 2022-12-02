@@ -1,5 +1,4 @@
 from os.path import isfile
-
 from aiogram import types, Dispatcher
 from config import bot
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
@@ -92,7 +91,7 @@ async def info_download(message: types.Message):
     all1 = []
     i = 1
     for item in items:
-        song = f'{i})' + item.get('name')
+        song = f'{i})' + item['name']
         all1.append(song)
         i += 1
     mus = '\n'.join(all1)

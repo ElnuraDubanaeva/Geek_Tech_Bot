@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import requests
 import wget
 from bs4 import BeautifulSoup as BS
@@ -29,10 +31,10 @@ def get_name(html):
 
 def get_data(html):
     soup = BS(html, 'html.parser')
-    items = soup.find_all('div', class_='track d-flex ai-center grid-item js-item')
+    items = soup.find_all('div', class_='track.d-flex.ai-center.grid-item.js-item')
     lyrics = []
     for item in items:
-        song = item.find('div', class_='track__desc flex-grow-1').find('a')
+        song = item.find('div', class_='track__desc.flex-grow-1').find('a')
         lyric = {
             'name': song.string
         }
@@ -51,6 +53,7 @@ def parser_name():
     if html.status_code == 200:
         list_name = get_name(html.text)
         return list_name
+    return ['nothing']
 
 
 def parser_music():
@@ -61,3 +64,5 @@ def parser_music():
 
     else:
         raise Exception("Error in parser!")
+
+pprint(parser_name())
